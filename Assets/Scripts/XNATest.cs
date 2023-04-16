@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
-using Platformer;
+using Platformer; // your game namespace here
+using System.IO;
 
 public class XNATest : MonoBehaviour {
-    PlatformerGame game;
+    PlatformerGame game; // your game routine here
 	DrawQueue drawQueue;
 	
 	public  float updateInterval = 0.5F;
@@ -21,7 +22,7 @@ public class XNATest : MonoBehaviour {
         Microsoft.Xna.Framework.Media.MediaPlayer.AudioSource = gameObject.AddComponent<AudioSource>();
 
 		drawQueue = new DrawQueue();
-        game = new PlatformerGame();
+        game = new PlatformerGame(); // your game routine here
 		game.DrawQueue = drawQueue;
         game.Begin();
 		timeleft = updateInterval;  
@@ -73,7 +74,7 @@ public class XNATest : MonoBehaviour {
 			float height = call.Texture2D.UnityTexture.height;
 			GUI.color = new Color(call.Color.X,	call.Color.Y, call.Color.Z, call.Color.W);
 			
-			Rect sourceRect = new Rect(0,0, 1,1);
+			Rect sourceRect = new Rect(0, 0, 1, 1);
 			
 			if(call.Source != null)
 			{
@@ -93,20 +94,29 @@ public class XNATest : MonoBehaviour {
 				sourceRect.y = 1-sourceRect.y;
 				sourceRect.height *= -1;
 			}
-			
-			GUI.DrawTextureWithTexCoords(new Rect(x,y,width * Mathf.Abs(sourceRect.width),height * Mathf.Abs(sourceRect.height)), call.Texture2D.UnityTexture, sourceRect);
-			
-		}
-		
+
+            GUI.DrawTextureWithTexCoords(new Rect(x, y, width * Mathf.Abs(sourceRect.width), height * Mathf.Abs(sourceRect.height)), call.Texture2D.UnityTexture, sourceRect);
+        }
+
         // Draw strings from SpriteBatch.DrawString()
         for (int i = 0; i < drawQueue.LastStringQueue.Length; i++)
         {
             DrawStringCall call = drawQueue.LastStringQueue[i];
      
 			GUI.color = new Color(call.Color.X,	call.Color.Y, call.Color.Z, call.Color.W);
-			
-            Vector2 size = GUI.skin.label.CalcSize(new GUIContent(call.Value));
-            GUI.Label(new Rect(call.Position.X, call.Position.Y, size.x, size.y), call.Value);
+
+			Vector2 size = GUI.skin.label.CalcSize(new GUIContent(call.Value));
+			string[] x = call.Font.PathTo.Split('/');
+            string path = $"{call.Font.PathTo.Remove(call.Font.PathTo.Length - 1 - x[x.Length-1].Length)}/{call.Font.FontName.ToString()}";
+            Font myFont = (Font)UnityEngine.Resources.Load($"{path}", typeof(Font));
+            //GUI.skin.font = myFont;
+
+            GUIStyle myStyle = new GUIStyle();
+			myStyle.font = myFont;
+			myStyle.fontSize = (int)call.Font.Size;
+			myStyle.normal.textColor = new Color(call.Color.X, call.Color.Y, call.Color.Z, call.Color.W);
+
+            GUI.Label(new Rect(call.Position.X, call.Position.Y, size.x, size.y), call.Value, myStyle);
         }
 
         //GUIStyle style = new GUIStyle();

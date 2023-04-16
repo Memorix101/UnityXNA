@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using UnityEngine;
 
 namespace Microsoft.Xna.Framework
 {
     class UnityGameWindow : GameWindow
-	{
+    {
         public override bool AllowUserResizing
         {
             get
@@ -24,7 +22,18 @@ namespace Microsoft.Xna.Framework
         }
         public override Rectangle ClientBounds
         {
-            get { throw new NotImplementedException(); }
+            //get { throw new NotImplementedException(); }
+            get
+            {
+                if (!Application.isEditor)
+                {
+                   return new Rectangle(Screen.mainWindowPosition.x, Screen.mainWindowPosition.y, Screen.height, Screen.width);
+                }
+                else
+                {
+                   return new Rectangle(0, 0, Screen.height, Screen.width);
+                }
+            }
         }
         public override void EndScreenDeviceChange(string screenDeviceName, int clientWidth, int clientHeight)
         {
@@ -42,5 +51,5 @@ namespace Microsoft.Xna.Framework
         {
             throw new NotImplementedException();
         }
-	}
+    }
 }

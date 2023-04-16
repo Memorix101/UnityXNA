@@ -13,6 +13,7 @@ namespace Microsoft.Xna.Framework.Graphics
 		private float spacing;
         private bool useKerning;
         private string style;
+        private string pathTo;
         #endregion
 
         #region Properties
@@ -54,16 +55,25 @@ namespace Microsoft.Xna.Framework.Graphics
             {
                 return this.useKerning;
             }
-        } 
+        }
+
+        public string PathTo
+        {
+            get
+            {
+                return this.pathTo;
+            }
+        }
         #endregion
 
-        public SpriteFont(string fontName, float size, float spacing, bool useKerning, string style)
+        public SpriteFont(string fontName, float size, float spacing, bool useKerning, string style, string pathTo)
         {
             this.fontName = fontName;
             this.size = size;
 			this.spacing = spacing;
             this.useKerning = useKerning;
             this.style = style;
+            this.pathTo = pathTo;
         }
         internal Vector2 MeasureString(string text)
         {			

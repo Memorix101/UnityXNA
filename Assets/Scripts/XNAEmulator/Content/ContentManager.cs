@@ -116,7 +116,7 @@ namespace Microsoft.Xna.Framework.Content
 				&& fontSettings.ContainsKey("UseKerning") 
 				&& fontSettings.ContainsKey("Style"))
 			{
-				SpriteFont spriteFont = new SpriteFont(fontSettings["FontName"], float.Parse(fontSettings["Size"]), float.Parse(fontSettings["Spacing"]), bool.Parse(fontSettings["UseKerning"]), fontSettings["Style"]);
+				SpriteFont spriteFont = new SpriteFont(fontSettings["FontName"], float.Parse(fontSettings["Size"]), float.Parse(fontSettings["Spacing"]), bool.Parse(fontSettings["UseKerning"]), fontSettings["Style"], asset);
 			
 				return spriteFont;
 			}

@@ -14,8 +14,8 @@ namespace Microsoft.Xna.Framework.Audio
         {
             GameObject gameObject = new GameObject("SoundEffectAudioClip");
             gameObject.AddComponent<AudioSource>();
-            gameObject.audio.clip = Clip;
-            gameObject.audio.Play();
+            gameObject.GetComponent<AudioSource>().clip = Clip;
+            gameObject.GetComponent<AudioSource>().Play();
             gameObject.AddComponent<AudioSourceController>();
             // TODO
         }
