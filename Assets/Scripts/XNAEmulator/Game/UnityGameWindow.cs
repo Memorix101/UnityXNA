@@ -27,11 +27,11 @@ namespace Microsoft.Xna.Framework
             {
                 if (!Application.isEditor)
                 {
-                   return new Rectangle(Screen.mainWindowPosition.x, Screen.mainWindowPosition.y, Screen.height, Screen.width);
+                   return new Rectangle(Screen.mainWindowPosition.x, Screen.mainWindowPosition.y, Screen.width, Screen.height);
                 }
                 else
                 {
-                   return new Rectangle(0, 0, Screen.height, Screen.width);
+                   return new Rectangle(0, 0, Screen.width, Screen.height);
                 }
             }
         }

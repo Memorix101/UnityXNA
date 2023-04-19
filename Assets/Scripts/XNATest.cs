@@ -95,7 +95,9 @@ public class XNATest : MonoBehaviour {
 				sourceRect.height *= -1;
 			}
 
-            GUI.DrawTextureWithTexCoords(new Rect(x, y, width * Mathf.Abs(sourceRect.width), height * Mathf.Abs(sourceRect.height)), call.Texture2D.UnityTexture, sourceRect);
+			var viewport = call.Viewport;
+			//Debug.Log("Viewport: " + viewport);
+			GUI.DrawTextureWithTexCoords(new Rect(x + viewport.X, y + viewport.Y, width * Mathf.Abs(sourceRect.width), height * Mathf.Abs(sourceRect.height)), call.Texture2D.UnityTexture, sourceRect);
         }
 
         // Draw strings from SpriteBatch.DrawString()
@@ -106,9 +108,7 @@ public class XNATest : MonoBehaviour {
 			GUI.color = new Color(call.Color.X,	call.Color.Y, call.Color.Z, call.Color.W);
 
 			Vector2 size = GUI.skin.label.CalcSize(new GUIContent(call.Value));
-			string[] x = call.Font.PathTo.Split('/');
-            string path = $"{call.Font.PathTo.Remove(call.Font.PathTo.Length - 1 - x[x.Length-1].Length)}/{call.Font.FontName.ToString()}";
-            Font myFont = (Font)UnityEngine.Resources.Load($"{path}", typeof(Font));
+            Font myFont = (Font)UnityEngine.Resources.Load($"Content/{call.Font.FontName.ToString()}", typeof(Font));
             //GUI.skin.font = myFont;
 
             GUIStyle myStyle = new GUIStyle();
@@ -116,7 +116,8 @@ public class XNATest : MonoBehaviour {
 			myStyle.fontSize = (int)call.Font.Size;
 			myStyle.normal.textColor = new Color(call.Color.X, call.Color.Y, call.Color.Z, call.Color.W);
 
-            GUI.Label(new Rect(call.Position.X, call.Position.Y, size.x, size.y), call.Value, myStyle);
+            var viewport = call.Viewport;
+            GUI.Label(new Rect(call.Position.X + viewport.X, call.Position.Y + viewport.Y, size.x, size.y), call.Value, myStyle);
         }
 
         //GUIStyle style = new GUIStyle();

@@ -10,9 +10,10 @@ class DrawStringCall
     private SpriteFont font;
     private string value;
     private Vector2 position;
-    private Vector4 color	;
+    private Vector4 color;
+    private Viewport viewport;
 
-	public SpriteFont Font {
+    public SpriteFont Font {
 		get {
 			return this.font;
 		}
@@ -35,12 +36,22 @@ class DrawStringCall
 			return this.color;
 		}
 	}
-    public DrawStringCall(SpriteFont font, string value, Vector2 position, Vector4 color)
+
+    public Viewport Viewport
+    {
+        get
+        {
+            return this.viewport;
+        }
+    }
+
+    public DrawStringCall(SpriteFont font, string value, Vector2 position, Vector4 color, Viewport viewport)
     {
         this.font = font;
         this.value = value;
         this.position = position;
         this.color = color;
+        this.viewport = viewport;
     }
 
 }

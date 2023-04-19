@@ -13,6 +13,7 @@ class DrawSpriteCall
     private Vector4 color;
 	private Vector2 origin;
 	private SpriteEffects spriteEffects;
+	private Viewport viewport;
 
 	public Texture2D Texture2D {
 		get {
@@ -49,8 +50,16 @@ class DrawSpriteCall
 			return this.spriteEffects;
 		}
 	}
-	
-    public DrawSpriteCall(Texture2D texture2D, Vector2 position, Nullable<Rectangle> source, Vector4 color, Vector2 origin, SpriteEffects spriteEffects)
+
+    public Viewport Viewport
+    {
+        get
+        {
+            return this.viewport;
+        }
+    }
+
+    public DrawSpriteCall(Texture2D texture2D, Vector2 position, Nullable<Rectangle> source, Vector4 color, Vector2 origin, SpriteEffects spriteEffects, Viewport viewport)
     {
         // TODO: Complete member initialization
         this.texture2D = texture2D;
@@ -59,6 +68,7 @@ class DrawSpriteCall
         this.color = color;
 		this.origin = origin;
 		this.spriteEffects = spriteEffects;
-    }
+		this.viewport = viewport;
+	}
 
 }

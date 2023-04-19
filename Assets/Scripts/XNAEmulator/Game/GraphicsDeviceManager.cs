@@ -10,6 +10,9 @@ namespace Microsoft.Xna.Framework
     {
         private Game game;
 
+        private int _preferredBackBufferHeight;
+        private int _preferredBackBufferWidth;
+
         public GraphicsDevice GraphicsDevice
         {
             get
@@ -22,6 +25,32 @@ namespace Microsoft.Xna.Framework
         {
             // TODO: Complete member initialization
             this.game = game;
+        }
+
+        public int PreferredBackBufferWidth
+        {
+            get
+            {
+                return _preferredBackBufferWidth;
+            }
+            set
+            {
+                //_shouldApplyChanges = true;
+                _preferredBackBufferWidth = value;
+            }
+        }
+
+        public int PreferredBackBufferHeight
+        {
+            get
+            {
+                return _preferredBackBufferHeight;
+            }
+            set
+            {
+                //_shouldApplyChanges = true;
+                _preferredBackBufferHeight = value;
+            }
         }
     }
 }

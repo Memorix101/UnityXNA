@@ -35,6 +35,14 @@ namespace Microsoft.Xna.Framework.Graphics
             get { return unityTexture.height; }
         }
 
+        public Rectangle Bounds
+        {
+            get
+            {
+                return new Rectangle(0, 0, unityTexture.width, unityTexture.height);
+            }
+        }
+
         public void Dispose()
         { }
 	}

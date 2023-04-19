@@ -33,6 +33,7 @@ SOFTWARE.
 using Microsoft.Xna.Framework;
 using System;
 using System.Globalization;
+using UnityEngine;
 
 namespace Microsoft.Xna.Framework.Graphics
 {
@@ -106,8 +107,7 @@ namespace Microsoft.Xna.Framework.Graphics
          int x,
          int y,
          int width,
-         int height
-		)
+         int height)
 		{
 			this.x = x;
 			this.y = y;
@@ -117,7 +117,14 @@ namespace Microsoft.Xna.Framework.Graphics
             minDepth = 0;
             maxDepth = 0;
             titleSafeArea = new Rectangle(x, y, width, height);
-		}
+
+            /*GameObject _camGo = new GameObject("Camera");
+            _camGo.transform.position = new UnityEngine.Vector3((float)x, (float)y, 0.0f);
+            var _camera = _camGo.AddComponent<Camera>();
+            _camera.rect = new Rect(x, y, width, height);*/
+
+            //Camera.main.rect = new Rect(x, y, width, height);
+        }
         #region Public Methods
 
         public Vector3 Project(Vector3 source, Matrix projection, Matrix view, Matrix world)

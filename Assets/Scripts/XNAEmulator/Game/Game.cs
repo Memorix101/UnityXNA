@@ -44,10 +44,18 @@ namespace Microsoft.Xna.Framework
         {
             content = new ContentManager(null, "");
 			
-			_components = new GameComponentCollection();	
+			_components = new GameComponentCollection();
+        }
+
+        protected virtual void Initialize()
+        {
         }
 
         protected virtual void Update(GameTime gameTime)
+        {
+        }
+
+        protected virtual void UnloadContent()
         {  
         }
 		
@@ -96,14 +104,14 @@ namespace Microsoft.Xna.Framework
         }
         public void Dispose()
         {
+            UnloadContent();
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-
-
         internal void Begin()
         {
+            Initialize();
             LoadContent();
 			// XNA's first update call has a zero elapsed time, so do one now.
 			GameTime gameTime = new GameTime(new TimeSpan(0), new TimeSpan(0), new TimeSpan(0, 0, 0, 0, 0), new TimeSpan(0, 0, 0, 0, 0));
@@ -118,8 +126,6 @@ namespace Microsoft.Xna.Framework
             GameTime gameTime = new GameTime(new TimeSpan(0), new TimeSpan(0), new TimeSpan(totalTicks), new TimeSpan(ticks));
             Update(gameTime);
             Draw(gameTime);
-        }
-
-       
+        }       
     }
 }
