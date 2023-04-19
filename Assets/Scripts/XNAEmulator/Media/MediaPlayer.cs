@@ -27,9 +27,22 @@ namespace Microsoft.Xna.Framework.Media
             }
         }
 
+        public static float Volume
+        {
+            get
+            {
+                return audioSource.volume;
+            }
+            set
+            {
+                audioSource.volume = value;
+            }
+        }
+
         internal static void Play(Song song)
         {
             audioSource.clip = song.Clip;
+            audioSource.volume = Volume;
             audioSource.Play();
         }
     }

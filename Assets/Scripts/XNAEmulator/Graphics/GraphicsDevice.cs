@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace Microsoft.Xna.Framework.Graphics
 {
@@ -33,7 +34,7 @@ namespace Microsoft.Xna.Framework.Graphics
 
         internal void Clear(Color color)
         {
-            
+            Camera.main.backgroundColor = new UnityEngine.Color(color.R, color.G, color.B);
         }
     }
 }

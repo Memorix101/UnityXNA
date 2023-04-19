@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace Microsoft.Xna.Framework
 {
-    class GraphicsDeviceManager
+    public class GraphicsDeviceManager
     {
         private Game game;
 
