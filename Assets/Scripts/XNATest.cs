@@ -108,7 +108,9 @@ public class XNATest : MonoBehaviour {
 			GUI.color = new Color(call.Color.X,	call.Color.Y, call.Color.Z, call.Color.W);
 
 			Vector2 size = GUI.skin.label.CalcSize(new GUIContent(call.Value));
-            Font myFont = (Font)UnityEngine.Resources.Load($"Content/{call.Font.FontName.ToString()}", typeof(Font));
+            string[] x = call.Font.PathTo.Split('/');
+            string path = $"{call.Font.PathTo.Remove(call.Font.PathTo.Length - 1 - x[x.Length-1].Length)}/{call.Font.FontName.ToString()}";
+            Font myFont = (Font)UnityEngine.Resources.Load($"{path}", typeof(Font));
             //GUI.skin.font = myFont;
 
             GUIStyle myStyle = new GUIStyle();
